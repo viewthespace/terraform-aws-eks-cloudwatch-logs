@@ -23,6 +23,11 @@ resource "helm_release" "cloudwatch_logs" {
   }
 
   set {
+    name  = "cloudWatch.logGroupName"
+    value = "/aws/eks/${var.cluster_name}/$(kubernetes['namespace'])"
+  }
+
+  set {
     name  = "firehose.enabled"
     value = var.firehose_enabled
   }
